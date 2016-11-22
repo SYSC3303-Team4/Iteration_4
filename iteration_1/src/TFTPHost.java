@@ -113,6 +113,7 @@ public class TFTPHost
 		//run UI
 		console = new ConsoleUI("Error Simulator");
 		console.run();
+		console.colorScheme("dark");
 	}
 	
 	
@@ -882,6 +883,22 @@ public class TFTPHost
 						else if (input[1].equals("false"))
 						{
 							verbose = false;
+						}
+						//alter color scheme
+						else if (input[0].equals("color") || input[0].equals("colour"))
+						{
+							boolean cs = console.colorScheme(input[1]);
+							if (verbose)
+							{
+								if(cs)
+								{
+									console.print("color scheme set to: " + input[1]);
+								}
+								else
+								{
+									console.printOperandError("color scheme not found");
+								}
+							}
 						}
 						else
 						{
