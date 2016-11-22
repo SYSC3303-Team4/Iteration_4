@@ -3,13 +3,15 @@
 *Project:           TFTP Project - Group 4
 *Author:            Jason Van Kerkhoven                                             
 *Date of Update:    17/11/2016                                              
-*Version:           1.0.0                                                      
+*Version:           1.0.1                                                      
 *                                                                                   
 *Purpose:           Loosely vomits back an array of garbage bytes.
 *					Similar to most other source code I write.
 * 
 * 
-*Update Log:		v1.0.0
+*Update Log:		v1.0.1
+*						- returns byte[] now instead of the previous Byte[] (whoops)
+*					v1.0.0
 *						- logic added
 *						- apparently Java can only save primitive bytes as signed
 *						
@@ -35,10 +37,10 @@ public class TrashFactory
 	
 	
 	//run the factory, seize the means of production later
-	public Byte[] produce(int quantity)
+	public byte[] produce(int quantity)
 	{
 		//generate an array of trash
-		Byte[] trash = new Byte[quantity];
+		byte[] trash = new byte[quantity];
 		for(int i=0; i<quantity; i++)
 		{
 			trash[i] = (byte)randomNumGen.nextInt(256);

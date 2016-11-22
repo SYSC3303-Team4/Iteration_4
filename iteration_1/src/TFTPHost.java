@@ -4,7 +4,7 @@
 *Project:           TFTP Project - Group 4
 *Author:            Jason Van Kerkhoven                                             
 *Date of Update:    15/11/2016                                              
-*Version:           2.1.0                                                      
+*Version:           2.1.1                                                      
 *                                                                                    
 *Purpose:           Receives packet from Client, sends packet to Server and waits
 *					for Server response. Sends Server response back to Client. Repeats
@@ -14,7 +14,9 @@
 *					all 3 verb inputs. However, in order to check that user noun input is valid, they are in separate if statements.
 * 
 * 
-*Update Log:        v2.1.0
+*Update Log:        v2.1.1
+*						- addData method added
+*					v2.1.0
 *						- added new inputs for error types
 *						- reset method added for InputStack
 *						- updated help menus to reflect new errors
@@ -298,13 +300,18 @@ public class TFTPHost
 		
 		
 	}
-	
+	//TODO
 	public void addData(int outPort, DatagramSocket socket)
 	{
-		TrashFactory adding =new TrashFactory();
+		//generate trash and prep DatagramArtisan
+		byte[] trash = (new TrashFactory()).produce(inputStack.peek().getExtraBytes());
+		DatagramArtisan da = new DatagramArtisan();
 		
-		console.print("Add data selected, sending packet normaly");
-		adding.produce(inputStack.peek().getExtraBytes());
+		//extract parameters from receivedPacket
+		int blockNum = da.getBlockNum(receivedPacket);
+		byte[] data = da.getData(receivedPacket);
+		
+		
 		
 		sendDatagram(outPort,socket);
 		needSend=false;
