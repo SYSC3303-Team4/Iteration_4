@@ -55,7 +55,7 @@ public class TrashFactory
 	public static void main (String[] args) 
 	{
 		TrashFactory tf = new TrashFactory();
-		Byte[] b = tf.produce(25);
+		byte[] b = tf.produce(25);
 		
 		for(int i=0; i<25; i++)
 		{
@@ -64,4 +64,5 @@ public class TrashFactory
 		
 	}
 	*/
+	
 }
